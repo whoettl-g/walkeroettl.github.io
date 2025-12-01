@@ -1,0 +1,426 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Walker | Applied Data Science Portfolio</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            line-height: 1.6;
+            color: #1a1a2e;
+            background: #fafafa;
+        }
+        
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(255,255,255,0.95);
+            backdrop-filter: blur(10px);
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 1000;
+            border-bottom: 1px solid #eee;
+        }
+        
+        .logo {
+            font-weight: 700;
+            font-size: 1.25rem;
+            color: #1a1a2e;
+        }
+        
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+        
+        .nav-links a {
+            text-decoration: none;
+            color: #555;
+            font-weight: 500;
+            font-size: 0.9rem;
+            transition: color 0.2s;
+        }
+        
+        .nav-links a:hover {
+            color: #4361ee;
+        }
+        
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 6rem 2rem 4rem;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+        }
+        
+        .hero-content {
+            max-width: 800px;
+            text-align: center;
+        }
+        
+        .hero h1 {
+            font-size: 3rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+        }
+        
+        .hero .subtitle {
+            font-size: 1.25rem;
+            opacity: 0.9;
+            margin-bottom: 2rem;
+        }
+        
+        .hero .tagline {
+            font-size: 1rem;
+            opacity: 0.8;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        
+        /* Sections */
+        section {
+            padding: 5rem 2rem;
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+        
+        section h2 {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+            color: #1a1a2e;
+        }
+        
+        section > p {
+            color: #555;
+            margin-bottom: 3rem;
+            max-width: 700px;
+        }
+        
+        /* Learning Outcomes */
+        .outcomes-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+        }
+        
+        .outcome-card {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 12px;
+            box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+            border-left: 4px solid #4361ee;
+        }
+        
+        .outcome-card h3 {
+            font-size: 1rem;
+            color: #4361ee;
+            margin-bottom: 0.5rem;
+        }
+        
+        .outcome-card p {
+            font-size: 0.9rem;
+            color: #555;
+        }
+        
+        /* Projects */
+        .projects-grid {
+            display: grid;
+            gap: 2rem;
+        }
+        
+        .project-card {
+            background: white;
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+            display: grid;
+            grid-template-columns: 1fr 1.5fr;
+        }
+        
+        .project-image {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 250px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 3rem;
+        }
+        
+        .project-content {
+            padding: 2rem;
+        }
+        
+        .project-content h3 {
+            font-size: 1.25rem;
+            margin-bottom: 0.5rem;
+        }
+        
+        .project-meta {
+            font-size: 0.85rem;
+            color: #888;
+            margin-bottom: 1rem;
+        }
+        
+        .project-content p {
+            color: #555;
+            font-size: 0.95rem;
+            margin-bottom: 1rem;
+        }
+        
+        .tech-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-bottom: 1rem;
+        }
+        
+        .tech-tag {
+            background: #f0f0f5;
+            padding: 0.25rem 0.75rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            color: #555;
+        }
+        
+        .outcomes-covered {
+            font-size: 0.85rem;
+            color: #4361ee;
+        }
+        
+        /* Video Section */
+        #video {
+            background: #1a1a2e;
+            color: white;
+            max-width: none;
+            text-align: center;
+        }
+        
+        #video h2 {
+            color: white;
+        }
+        
+        #video p {
+            color: rgba(255,255,255,0.7);
+        }
+        
+        .video-placeholder {
+            background: rgba(255,255,255,0.1);
+            border-radius: 12px;
+            padding: 4rem;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+        
+        .video-placeholder p {
+            color: rgba(255,255,255,0.5);
+        }
+        
+        /* Blog Section */
+        .blog-preview {
+            background: white;
+            border-radius: 16px;
+            padding: 3rem;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+        }
+        
+        .blog-preview h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+        }
+        
+        .blog-preview .excerpt {
+            color: #555;
+            margin-bottom: 1.5rem;
+        }
+        
+        .read-more {
+            display: inline-block;
+            color: #4361ee;
+            text-decoration: none;
+            font-weight: 600;
+        }
+        
+        /* Footer */
+        footer {
+            background: #1a1a2e;
+            color: white;
+            padding: 3rem 2rem;
+            text-align: center;
+        }
+        
+        footer p {
+            opacity: 0.7;
+            font-size: 0.9rem;
+        }
+        
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+            margin-bottom: 1rem;
+        }
+        
+        .social-links a {
+            color: white;
+            text-decoration: none;
+            opacity: 0.7;
+            transition: opacity 0.2s;
+        }
+        
+        .social-links a:hover {
+            opacity: 1;
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero h1 { font-size: 2rem; }
+            .project-card { grid-template-columns: 1fr; }
+            .nav-links { display: none; }
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <div class="logo">Walker</div>
+        <ul class="nav-links">
+            <li><a href="#overview">Overview</a></li>
+            <li><a href="#projects">Projects</a></li>
+            <li><a href="#video">Video</a></li>
+            <li><a href="#blog">Blog</a></li>
+        </ul>
+    </nav>
+
+    <section class="hero">
+        <div class="hero-content">
+            <h1>Walker [Last Name]</h1>
+            <p class="subtitle">M.S. Applied Data Science | Syracuse University</p>
+            <p class="tagline">Concentration in Visual Analytics — Transforming complex data into actionable insights through analysis, visualization, and storytelling.</p>
+        </div>
+    </section>
+
+    <section id="overview">
+        <h2>Program Learning Outcomes</h2>
+        <p>The Applied Data Science program equipped me with a comprehensive toolkit spanning data collection, analysis, visualization, and communication.</p>
+        
+        <div class="outcomes-grid">
+            <div class="outcome-card">
+                <h3>1. Data Collection & Storage</h3>
+                <p>Identifying and leveraging applicable technologies to collect, store, and access data effectively.</p>
+            </div>
+            <div class="outcome-card">
+                <h3>2. Actionable Insight</h3>
+                <p>Creating meaningful insights across societal, business, and political contexts using the full data science life cycle.</p>
+            </div>
+            <div class="outcome-card">
+                <h3>3. Visualization & Modeling</h3>
+                <p>Applying visualization techniques and predictive models to generate actionable insight.</p>
+            </div>
+            <div class="outcome-card">
+                <h3>4. Programming Proficiency</h3>
+                <p>Using R, Python, and SQL to support data analysis and insight generation.</p>
+            </div>
+            <div class="outcome-card">
+                <h3>5. Communication</h3>
+                <p>Effectively communicating insights to diverse audiences, from technical teams to executive stakeholders.</p>
+            </div>
+            <div class="outcome-card">
+                <h3>6. Ethics in Data Science</h3>
+                <p>Applying ethical considerations including fairness, bias, transparency, and privacy in data work.</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="projects">
+        <h2>Featured Projects</h2>
+        <p>A selection of projects demonstrating mastery across the program learning outcomes.</p>
+        
+        <div class="projects-grid">
+            <div class="project-card">
+                <div class="project-image">📊</div>
+                <div class="project-content">
+                    <h3>Project Title 1</h3>
+                    <p class="project-meta">Course Name | Semester Year</p>
+                    <p>Brief description of the project goals, approach, and key findings. What problem did you solve? What insights did you uncover?</p>
+                    <div class="tech-tags">
+                        <span class="tech-tag">Python</span>
+                        <span class="tech-tag">Tableau</span>
+                        <span class="tech-tag">SQL</span>
+                    </div>
+                    <p class="outcomes-covered">Outcomes: 1, 2, 4, 5</p>
+                </div>
+            </div>
+            
+            <div class="project-card">
+                <div class="project-image">🏈</div>
+                <div class="project-content">
+                    <h3>Project Title 2</h3>
+                    <p class="project-meta">Course Name | Semester Year</p>
+                    <p>Brief description of the project goals, approach, and key findings. What problem did you solve? What insights did you uncover?</p>
+                    <div class="tech-tags">
+                        <span class="tech-tag">R</span>
+                        <span class="tech-tag">Machine Learning</span>
+                    </div>
+                    <p class="outcomes-covered">Outcomes: 2, 3, 4, 6</p>
+                </div>
+            </div>
+            
+            <div class="project-card">
+                <div class="project-image">🎯</div>
+                <div class="project-content">
+                    <h3>Project Title 3</h3>
+                    <p class="project-meta">Course Name | Semester Year</p>
+                    <p>Brief description of the project goals, approach, and key findings. What problem did you solve? What insights did you uncover?</p>
+                    <div class="tech-tags">
+                        <span class="tech-tag">Python</span>
+                        <span class="tech-tag">Deep Learning</span>
+                    </div>
+                    <p class="outcomes-covered">Outcomes: 2, 3, 4, 5</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="video">
+        <h2>Video Presentation</h2>
+        <p>A brief reflection on my journey through the Applied Data Science program.</p>
+        <div class="video-placeholder">
+            <p>[ Embed your 1-2 minute video here ]</p>
+        </div>
+    </section>
+
+    <section id="blog">
+        <h2>Reflections</h2>
+        <div class="blog-preview">
+            <h3>My Journey Through Applied Data Science</h3>
+            <p class="excerpt">When I started this program, I expected to learn technical skills—Python, machine learning, visualization. What I didn't expect was how much I'd learn about translating complex analyses into stories that drive decisions...</p>
+            <a href="blog.html" class="read-more">Read Full Post →</a>
+        </div>
+    </section>
+
+    <footer>
+        <div class="social-links">
+            <a href="#">LinkedIn</a>
+            <a href="#">GitHub</a>
+            <a href="#">Email</a>
+        </div>
+        <p>© 2025 Walker [Last Name] | Syracuse University M.S. Applied Data Science</p>
+    </footer>
+</body>
+</html>
