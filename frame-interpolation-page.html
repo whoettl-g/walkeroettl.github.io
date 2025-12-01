@@ -1,0 +1,429 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Anime Frame Interpolation | Walker Oettl</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            line-height: 1.7;
+            color: #1a1a2e;
+            background: #fafafa;
+        }
+        
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(255,255,255,0.95);
+            backdrop-filter: blur(10px);
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 1000;
+            border-bottom: 1px solid #eee;
+        }
+        
+        .logo {
+            font-weight: 700;
+            font-size: 1.25rem;
+            color: #1a1a2e;
+            text-decoration: none;
+        }
+        
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+        
+        .nav-links a {
+            text-decoration: none;
+            color: #555;
+            font-weight: 500;
+            font-size: 0.9rem;
+            transition: color 0.2s;
+        }
+        
+        .nav-links a:hover {
+            color: #4361ee;
+        }
+        
+        .project-hero {
+            padding: 8rem 2rem 4rem;
+            background: linear-gradient(135deg, #764ba2 0%, #667eea 100%);
+            color: white;
+        }
+        
+        .project-hero-content {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+        
+        .back-link {
+            color: rgba(255,255,255,0.7);
+            text-decoration: none;
+            font-size: 0.9rem;
+            display: inline-block;
+            margin-bottom: 1.5rem;
+        }
+        
+        .back-link:hover {
+            color: white;
+        }
+        
+        .project-hero h1 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+        }
+        
+        .project-meta {
+            font-size: 1.1rem;
+            opacity: 0.85;
+            margin-bottom: 1.5rem;
+        }
+        
+        .tech-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+        
+        .tech-tag {
+            background: rgba(255,255,255,0.15);
+            padding: 0.35rem 0.85rem;
+            border-radius: 20px;
+            font-size: 0.85rem;
+        }
+        
+        .project-content {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 4rem 2rem;
+        }
+        
+        .project-content h2 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            margin-top: 3rem;
+            color: #1a1a2e;
+        }
+        
+        .project-content h2:first-child {
+            margin-top: 0;
+        }
+        
+        .project-content p {
+            color: #444;
+            margin-bottom: 1rem;
+        }
+        
+        .outcomes-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1rem;
+            margin-top: 1.5rem;
+        }
+        
+        .outcome-item {
+            background: white;
+            padding: 1rem 1.25rem;
+            border-radius: 8px;
+            border-left: 3px solid #764ba2;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+        }
+        
+        .outcome-item h4 {
+            font-size: 0.85rem;
+            color: #764ba2;
+            margin-bottom: 0.25rem;
+        }
+        
+        .outcome-item p {
+            font-size: 0.85rem;
+            color: #555;
+            margin: 0;
+        }
+        
+        .results-box {
+            background: white;
+            border-radius: 12px;
+            padding: 1.5rem 2rem;
+            margin: 1.5rem 0;
+            box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+        }
+        
+        .results-box h3 {
+            font-size: 1rem;
+            color: #764ba2;
+            margin-bottom: 1rem;
+        }
+        
+        .result-stat {
+            display: flex;
+            justify-content: space-between;
+            padding: 0.5rem 0;
+            border-bottom: 1px solid #eee;
+        }
+        
+        .result-stat:last-child {
+            border-bottom: none;
+        }
+        
+        .result-stat span:first-child {
+            color: #555;
+        }
+        
+        .result-stat span:last-child {
+            font-weight: 600;
+            color: #1a1a2e;
+        }
+        
+        .gif-gallery {
+            margin: 2rem 0;
+        }
+        
+        .gif-gallery h3 {
+            font-size: 1.1rem;
+            margin-bottom: 1rem;
+            color: #1a1a2e;
+        }
+        
+        .loss-curve {
+            margin: 2rem 0;
+        }
+        
+        .loss-curve h3 {
+            font-size: 1.1rem;
+            color: #1a1a2e;
+            margin-bottom: 1rem;
+        }
+        
+        .image-placeholder {
+            background: #f0f0f5;
+            border-radius: 12px;
+            padding: 3rem;
+            text-align: center;
+            color: #888;
+            font-size: 0.9rem;
+        }
+        
+        .image-placeholder img {
+            max-width: 100%;
+            border-radius: 8px;
+        }
+        
+        .comparison-header {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+            margin-bottom: 1rem;
+        }
+        
+        .comparison-header h3 {
+            text-align: center;
+            font-size: 1rem;
+            color: #555;
+        }
+        
+        .comparison-grid {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+        
+        .comparison-pair {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+        }
+        
+        .gif-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
+        }
+        
+        .gif-item {
+            background: #1a1a2e;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 4px 16px rgba(0,0,0,0.1);
+        }
+        
+        .gif-placeholder {
+            width: 100%;
+            aspect-ratio: 16/9;
+            background: linear-gradient(135deg, #2d2d44 0%, #1a1a2e 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: rgba(255,255,255,0.3);
+            font-size: 0.85rem;
+        }
+        
+        .gif-item img {
+            width: 100%;
+            display: block;
+        }
+        
+        .gif-caption {
+            padding: 1rem;
+            color: rgba(255,255,255,0.8);
+            font-size: 0.85rem;
+        }
+        
+        .future-work {
+            background: #f8f8fc;
+            border-radius: 12px;
+            padding: 2rem;
+            margin-top: 2rem;
+        }
+        
+        .future-work h3 {
+            font-size: 1.1rem;
+            color: #1a1a2e;
+            margin-bottom: 0.75rem;
+        }
+        
+        .future-work p {
+            color: #555;
+            margin: 0;
+        }
+        
+        footer {
+            background: #1a1a2e;
+            color: white;
+            padding: 3rem 2rem;
+            text-align: center;
+        }
+        
+        footer p {
+            opacity: 0.7;
+            font-size: 0.9rem;
+        }
+        
+        @media (max-width: 768px) {
+            .project-hero h1 { font-size: 1.75rem; }
+            .nav-links { display: none; }
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <a href="index.html" class="logo">Walker Oettl</a>
+        <ul class="nav-links">
+            <li><a href="index.html#overview">Overview</a></li>
+            <li><a href="index.html#projects">Projects</a></li>
+            <li><a href="index.html#video">Video</a></li>
+            <li><a href="blog.html">Blog</a></li>
+        </ul>
+    </nav>
+
+    <section class="project-hero">
+        <div class="project-hero-content">
+            <a href="index.html#projects" class="back-link">← Back to Projects</a>
+            <h1>Anime Frame Interpolation with U-Net</h1>
+            <p class="project-meta">IST 691: Deep Learning in Practice | Fall 2025</p>
+            <div class="tech-tags">
+                <span class="tech-tag">Python</span>
+                <span class="tech-tag">TensorFlow</span>
+                <span class="tech-tag">U-Net</span>
+                <span class="tech-tag">Computer Vision</span>
+            </div>
+        </div>
+    </section>
+
+    <div class="project-content">
+        <h2>Overview</h2>
+        <p>Traditional animation is labor-intensive—animators draw keyframes and then painstakingly create the "in-between" frames that make motion fluid. This project explores whether a deep learning model can assist that process by generating intermediate frames automatically.</p>
+        <p>I built a U-Net convolutional neural network from scratch, trained specifically on Pokémon animation footage. The idea is to train on a single series' visual style so the model learns that specific aesthetic, rather than trying to generalize across all animation styles. Given two frames, the model predicts what the frame between them should look like.</p>
+
+        <h2>Technical Approach</h2>
+        <p><strong>Frame Extraction Pipeline:</strong> Built a pipeline to extract training triplets from video using a 9-frame window (frames 1-9), saving the start frame, middle frame (5), and end frame (9). The model learns to predict the middle frame given the two endpoints. To maximize training data, the window slides with a stride of 5 frames—so triplets come from frames 1-9, then 6-14, then 11-19, and so on—creating overlapping samples for more robust training.</p>
+        <p><strong>U-Net Architecture:</strong> Implemented a ~31 million parameter U-Net—an encoder-decoder architecture with skip connections that preserves spatial detail while learning semantic features. The model takes two frames as input (concatenated) and outputs the predicted intermediate frame.</p>
+        <p><strong>Recursive Interpolation:</strong> The model generates frame 5 from keyframes 1 and 9, then recursively fills in the gaps—predicting frame 3 from frames 1 and 5, frame 7 from frames 5 and 9, and so on. This approach generates 7 intermediate frames from just 2 drawn keyframes, meaning animators would only need to draw roughly 1 frame for every 8 in the final output.</p>
+
+        <div class="results-box">
+            <h3>Results</h3>
+            <div class="result-stat">
+                <span>Model Parameters</span>
+                <span>~31 million</span>
+            </div>
+            <div class="result-stat">
+                <span>Validation Loss</span>
+                <span>0.032</span>
+            </div>
+            <div class="result-stat">
+                <span>Average Pixel Error</span>
+                <span>3.2%</span>
+            </div>
+        </div>
+
+        <h2>Sample Results</h2>
+        <p>Below are examples of the model's interpolation outputs, showing original frames alongside generated intermediate frames.</p>
+        
+        <div class="gif-gallery">
+            <h3>Interpolation Examples</h3>
+            <div class="gif-grid">
+                <div class="gif-item">
+                    <!-- Replace src with your actual GIF file -->
+                    <div class="gif-placeholder">sample-1.gif</div>
+                    <p class="gif-caption">Example 1: Fire scene interpolation</p>
+                </div>
+                <div class="gif-item">
+                    <div class="gif-placeholder">sample-2.gif</div>
+                    <p class="gif-caption">Example 2: Character motion</p>
+                </div>
+                <div class="gif-item">
+                    <div class="gif-placeholder">sample-3.gif</div>
+                    <p class="gif-caption">Example 3: Sky/movement scene</p>
+                </div>
+                <div class="gif-item">
+                    <div class="gif-placeholder">sample-4.gif</div>
+                    <p class="gif-caption">Example 4: Character close-up</p>
+                </div>
+                <div class="gif-item">
+                    <div class="gif-placeholder">sample-5.gif</div>
+                    <p class="gif-caption">Example 5: Two-character scene</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="future-work">
+            <h3>Scaling Considerations</h3>
+            <p>As a class project, this was constrained by available compute and training data. A production-scale version would benefit significantly from more GPU hours for training, a larger and more diverse dataset from the target series, and potentially a more sophisticated architecture like a video diffusion model. The core approach—training on a specific animation style rather than generalizing—remains sound and could yield much higher quality results with additional resources.</p>
+        </div>
+
+        <h2>Learning Outcomes Demonstrated</h2>
+        <div class="outcomes-grid">
+            <div class="outcome-item">
+                <h4>2. Actionable Insight</h4>
+                <p>Developed a practical tool concept for animation production workflows</p>
+            </div>
+            <div class="outcome-item">
+                <h4>3. Visualization & Modeling</h4>
+                <p>Built and trained a U-Net CNN architecture from scratch</p>
+            </div>
+            <div class="outcome-item">
+                <h4>4. Programming</h4>
+                <p>Heavy Python development with TensorFlow for deep learning</p>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <p>© 2025 Walker Oettl | Syracuse University M.S. Applied Data Science</p>
+    </footer>
+</body>
+</html>
