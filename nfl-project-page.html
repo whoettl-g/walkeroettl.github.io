@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NFL's Dwindling Middle Class | Walker Oettl</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            line-height: 1.7;
+            color: #1a1a2e;
+            background: #fafafa;
+        }
+        
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(255,255,255,0.95);
+            backdrop-filter: blur(10px);
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 1000;
+            border-bottom: 1px solid #eee;
+        }
+        
+        .logo {
+            font-weight: 700;
+            font-size: 1.25rem;
+            color: #1a1a2e;
+            text-decoration: none;
+        }
+        
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+        
+        .nav-links a {
+            text-decoration: none;
+            color: #555;
+            font-weight: 500;
+            font-size: 0.9rem;
+            transition: color 0.2s;
+        }
+        
+        .nav-links a:hover {
+            color: #4361ee;
+        }
+        
+        .project-hero {
+            padding: 8rem 2rem 4rem;
+            background: linear-gradient(135deg, #1a1a2e 0%, #2d2d44 100%);
+            color: white;
+        }
+        
+        .project-hero-content {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+        
+        .back-link {
+            color: rgba(255,255,255,0.7);
+            text-decoration: none;
+            font-size: 0.9rem;
+            display: inline-block;
+            margin-bottom: 1.5rem;
+        }
+        
+        .back-link:hover {
+            color: white;
+        }
+        
+        .project-hero h1 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+        }
+        
+        .project-meta {
+            font-size: 1.1rem;
+            opacity: 0.85;
+            margin-bottom: 1.5rem;
+        }
+        
+        .tech-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+        
+        .tech-tag {
+            background: rgba(255,255,255,0.15);
+            padding: 0.35rem 0.85rem;
+            border-radius: 20px;
+            font-size: 0.85rem;
+        }
+        
+        .project-content {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 4rem 2rem;
+        }
+        
+        .project-content h2 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            margin-top: 3rem;
+            color: #1a1a2e;
+        }
+        
+        .project-content h2:first-child {
+            margin-top: 0;
+        }
+        
+        .project-content p {
+            color: #444;
+            margin-bottom: 1rem;
+        }
+        
+        .outcomes-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1rem;
+            margin-top: 1.5rem;
+        }
+        
+        .outcome-item {
+            background: white;
+            padding: 1rem 1.25rem;
+            border-radius: 8px;
+            border-left: 3px solid #4361ee;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+        }
+        
+        .outcome-item h4 {
+            font-size: 0.85rem;
+            color: #4361ee;
+            margin-bottom: 0.25rem;
+        }
+        
+        .outcome-item p {
+            font-size: 0.85rem;
+            color: #555;
+            margin: 0;
+        }
+        
+        .visual-section {
+            background: #f0f0f5;
+            padding: 3rem 2rem;
+            margin: 3rem 0;
+            border-radius: 12px;
+            text-align: center;
+        }
+        
+        .visual-section p {
+            color: #888;
+            font-size: 0.9rem;
+        }
+        
+        .embed-container {
+            background: white;
+            border-radius: 12px;
+            padding: 2rem;
+            margin-top: 1.5rem;
+            box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+        }
+        
+        .btn {
+            display: inline-block;
+            background: #4361ee;
+            color: white;
+            padding: 0.75rem 1.5rem;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.9rem;
+            transition: background 0.2s;
+        }
+        
+        .btn:hover {
+            background: #3451d1;
+        }
+        
+        footer {
+            background: #1a1a2e;
+            color: white;
+            padding: 3rem 2rem;
+            text-align: center;
+        }
+        
+        footer p {
+            opacity: 0.7;
+            font-size: 0.9rem;
+        }
+        
+        @media (max-width: 768px) {
+            .project-hero h1 { font-size: 1.75rem; }
+            .nav-links { display: none; }
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <a href="index.html" class="logo">Walker Oettl</a>
+        <ul class="nav-links">
+            <li><a href="index.html#overview">Overview</a></li>
+            <li><a href="index.html#projects">Projects</a></li>
+            <li><a href="index.html#video">Video</a></li>
+            <li><a href="blog.html">Blog</a></li>
+        </ul>
+    </nav>
+
+    <section class="project-hero">
+        <div class="project-hero-content">
+            <a href="index.html#projects" class="back-link">← Back to Projects</a>
+            <h1>The NFL's Dwindling Middle Class</h1>
+            <p class="project-meta">NFLPA Analytics Competition | Fall 2024 | Team of 4 (Finalist)</p>
+            <div class="tech-tags">
+                <span class="tech-tag">R</span>
+                <span class="tech-tag">Excel</span>
+                <span class="tech-tag">K-Means Clustering</span>
+                <span class="tech-tag">Policy Analysis</span>
+            </div>
+        </div>
+    </section>
+
+    <div class="project-content">
+        <h2>Overview</h2>
+        <p>The NFL's salary cap creates a zero-sum environment where every dollar spent on one player is a dollar unavailable for another. Our team investigated a growing concern: the middle class of NFL veterans—players earning between $1.9M and $6.3M annually—is shrinking as star players command an ever-larger share of team payrolls.</p>
+        <p>We analyzed 14 years of contract data (2011–2024) from Spotrac, Over-the-Cap, and Pro Football Reference, standardizing all figures to the 2024 salary cap of $255 million. Using K-means clustering, we identified three distinct economic classes and tracked their evolution over time.</p>
+
+        <h2>My Role</h2>
+        <p>On a team of four, I led the policy modeling—designing the Mid-Level Exception and Team-Level Exception proposals, including the progressive tax funding mechanism. I also led our final presentation to NFLPA executives, including the union president, where we defended our methodology and recommendations.</p>
+
+        <h2>Key Findings</h2>
+        <p>The middle class salary range has contracted from $5.3M to $4.8M over the study period. More critically, the middle class's share of dead money (guaranteed money paid to released players) dropped from 28% to 19% after the 2020 CBA, while the upper class's share grew from 64% to 75%. This shift indicates that guaranteed money—and therefore job security—is increasingly concentrated among elite players.</p>
+
+        <h2>Policy Recommendations</h2>
+        <p>We proposed two mechanisms to incentivize teams to invest in middle-class talent:</p>
+        <p><strong>Mid-Level Exception:</strong> Modeled after the NBA, this would provide teams a $750,000 cap credit for signing qualifying veterans to one-year, fully-guaranteed contracts at position-specific rates. Our modeling showed an average player salary increase of $415,000 with team cap savings of $335,000 per contract.</p>
+        <p><strong>Team-Level Exception:</strong> A roster-composition incentive that rewards teams based on how many middle-class players they employ across position groups, funded through a progressive tax on the Performance-Based Pay pool.</p>
+
+        <h2>Learning Outcomes Demonstrated</h2>
+        <div class="outcomes-grid">
+            <div class="outcome-item">
+                <h4>1. Data Collection & Storage</h4>
+                <p>Gathered and standardized contract data from multiple sources across 14 seasons</p>
+            </div>
+            <div class="outcome-item">
+                <h4>2. Actionable Insight</h4>
+                <p>Developed concrete policy proposals for NFLPA collective bargaining</p>
+            </div>
+            <div class="outcome-item">
+                <h4>3. Visualization & Modeling</h4>
+                <p>Applied K-means clustering to identify economic classes and trends</p>
+            </div>
+            <div class="outcome-item">
+                <h4>4. Programming</h4>
+                <p>Used R for data analysis and modeling</p>
+            </div>
+            <div class="outcome-item">
+                <h4>5. Communication</h4>
+                <p>Presented findings to NFLPA leadership in person</p>
+            </div>
+            <div class="outcome-item">
+                <h4>6. Ethics</h4>
+                <p>Addressed fairness in player compensation and wealth distribution</p>
+            </div>
+        </div>
+
+        <div class="visual-section">
+            <h2>Project Materials</h2>
+            <p>View the full presentation deck</p>
+            <div class="embed-container">
+                <a href="nfl-middle-class.pdf" class="btn" target="_blank">View Full Presentation (PDF)</a>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <p>© 2025 Walker Oettl | Syracuse University M.S. Applied Data Science</p>
+    </footer>
+</body>
+</html>
