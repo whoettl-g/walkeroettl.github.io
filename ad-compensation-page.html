@@ -1,0 +1,405 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Athletic Director Compensation Modeling | Walker Oettl</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            line-height: 1.7;
+            color: #1a1a2e;
+            background: #fafafa;
+        }
+        
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(255,255,255,0.95);
+            backdrop-filter: blur(10px);
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 1000;
+            border-bottom: 1px solid #eee;
+        }
+        
+        .logo {
+            font-weight: 700;
+            font-size: 1.25rem;
+            color: #1a1a2e;
+            text-decoration: none;
+        }
+        
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+        
+        .nav-links a {
+            text-decoration: none;
+            color: #555;
+            font-weight: 500;
+            font-size: 0.9rem;
+            transition: color 0.2s;
+        }
+        
+        .nav-links a:hover {
+            color: #4361ee;
+        }
+        
+        .project-hero {
+            padding: 8rem 2rem 4rem;
+            background: linear-gradient(135deg, #2d5016 0%, #4a7c23 100%);
+            color: white;
+        }
+        
+        .project-hero-content {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+        
+        .back-link {
+            color: rgba(255,255,255,0.7);
+            text-decoration: none;
+            font-size: 0.9rem;
+            display: inline-block;
+            margin-bottom: 1.5rem;
+        }
+        
+        .back-link:hover {
+            color: white;
+        }
+        
+        .project-hero h1 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+        }
+        
+        .project-meta {
+            font-size: 1.1rem;
+            opacity: 0.85;
+            margin-bottom: 1.5rem;
+        }
+        
+        .tech-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+        
+        .tech-tag {
+            background: rgba(255,255,255,0.15);
+            padding: 0.35rem 0.85rem;
+            border-radius: 20px;
+            font-size: 0.85rem;
+        }
+        
+        .project-content {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 4rem 2rem;
+        }
+        
+        .project-content h2 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            margin-top: 3rem;
+            color: #1a1a2e;
+        }
+        
+        .project-content h2:first-child {
+            margin-top: 0;
+        }
+        
+        .project-content p {
+            color: #444;
+            margin-bottom: 1rem;
+        }
+        
+        .outcomes-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1rem;
+            margin-top: 1.5rem;
+        }
+        
+        .outcome-item {
+            background: white;
+            padding: 1rem 1.25rem;
+            border-radius: 8px;
+            border-left: 3px solid #4a7c23;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+        }
+        
+        .outcome-item h4 {
+            font-size: 0.85rem;
+            color: #4a7c23;
+            margin-bottom: 0.25rem;
+        }
+        
+        .outcome-item p {
+            font-size: 0.85rem;
+            color: #555;
+            margin: 0;
+        }
+        
+        .results-box {
+            background: white;
+            border-radius: 12px;
+            padding: 1.5rem 2rem;
+            margin: 1.5rem 0;
+            box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+        }
+        
+        .results-box h3 {
+            font-size: 1rem;
+            color: #4a7c23;
+            margin-bottom: 1rem;
+        }
+        
+        .result-stat {
+            display: flex;
+            justify-content: space-between;
+            padding: 0.5rem 0;
+            border-bottom: 1px solid #eee;
+        }
+        
+        .result-stat:last-child {
+            border-bottom: none;
+        }
+        
+        .result-stat span:first-child {
+            color: #555;
+        }
+        
+        .result-stat span:last-child {
+            font-weight: 600;
+            color: #1a1a2e;
+        }
+        
+        .visual-gallery {
+            margin: 2rem 0;
+        }
+        
+        .visual-gallery h3 {
+            font-size: 1.1rem;
+            margin-bottom: 1rem;
+            color: #1a1a2e;
+        }
+        
+        .visual-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 1.5rem;
+        }
+        
+        .visual-item {
+            background: white;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 4px 16px rgba(0,0,0,0.08);
+        }
+        
+        .visual-placeholder {
+            width: 100%;
+            min-height: 300px;
+            background: #f0f0f5;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #888;
+            font-size: 0.9rem;
+        }
+        
+        .visual-item img {
+            width: 100%;
+            display: block;
+        }
+        
+        .visual-caption {
+            padding: 1rem 1.5rem;
+            color: #555;
+            font-size: 0.9rem;
+            border-top: 1px solid #eee;
+        }
+        
+        .challenges-box {
+            background: #fff8f0;
+            border-radius: 12px;
+            padding: 2rem;
+            margin-top: 2rem;
+            border-left: 4px solid #e07c24;
+        }
+        
+        .challenges-box h3 {
+            font-size: 1.1rem;
+            color: #1a1a2e;
+            margin-bottom: 0.75rem;
+        }
+        
+        .challenges-box p {
+            color: #555;
+            margin: 0;
+        }
+        
+        .btn {
+            display: inline-block;
+            background: #4a7c23;
+            color: white;
+            padding: 0.75rem 1.5rem;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.9rem;
+            transition: background 0.2s;
+            margin-top: 1rem;
+        }
+        
+        .btn:hover {
+            background: #3d6a1c;
+        }
+        
+        footer {
+            background: #1a1a2e;
+            color: white;
+            padding: 3rem 2rem;
+            text-align: center;
+        }
+        
+        footer p {
+            opacity: 0.7;
+            font-size: 0.9rem;
+        }
+        
+        @media (max-width: 768px) {
+            .project-hero h1 { font-size: 1.75rem; }
+            .nav-links { display: none; }
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <a href="index.html" class="logo">Walker Oettl</a>
+        <ul class="nav-links">
+            <li><a href="index.html#overview">Overview</a></li>
+            <li><a href="index.html#projects">Projects</a></li>
+            <li><a href="index.html#video">Video</a></li>
+            <li><a href="blog.html">Blog</a></li>
+        </ul>
+    </nav>
+
+    <section class="project-hero">
+        <div class="project-hero-content">
+            <a href="index.html#projects" class="back-link">← Back to Projects</a>
+            <h1>Athletic Director Compensation Modeling</h1>
+            <p class="project-meta">Undergraduate Capstone Thesis | Spring 2025</p>
+            <div class="tech-tags">
+                <span class="tech-tag">R</span>
+                <span class="tech-tag">Linear Regression</span>
+                <span class="tech-tag">Data Imputation</span>
+                <span class="tech-tag">HAC Standard Errors</span>
+            </div>
+        </div>
+    </section>
+
+    <div class="project-content">
+        <h2>Overview</h2>
+        <p>Athletic Directors are the pseudo-CEOs of college sports—managing multimillion-dollar budgets, coaching transitions, and the broader success of athletic programs. Yet unlike coaches, whose salaries are widely reported and studied, AD compensation remains largely opaque. This thesis attempts to model the determinants of AD pay across NCAA Division I programs.</p>
+        <p>Building on Marburger's (2015) foundational work, this study extends the analysis from 2015-2023, incorporating department revenues, recruiting success (football and basketball), NACDA Directors' Cup performance, and conference affiliation as predictors.</p>
+
+        <h2>Data Collection</h2>
+        <p>The core challenge of this project was data availability. Unlike coaches, AD salaries aren't published in accessible databases. I assembled compensation data from IRS Form 990 filings (Schedule J) for public universities, then built a predictive model to impute missing values using the NCAA Membership Financial Reporting System's administrative compensation category.</p>
+        <p>Additional data came from 247sports.com for recruiting rankings, NACDA for Directors' Cup points, and NCAA Membership reports for revenue and conference affiliation. The final dataset spans 1,400+ school-year observations across Division I programs.</p>
+
+        <div class="visual-gallery">
+            <h3>Distribution Analysis</h3>
+            <div class="visual-grid">
+                <div class="visual-item">
+                    <!-- Replace with: <img src="ad-scatter.png" alt="Compensation vs Admin scatter plot"> -->
+                    <div class="visual-placeholder">ad-scatter.png</div>
+                    <p class="visual-caption">Relationship between IRS 990 compensation and NCAA administrative spending—the basis for imputation.</p>
+                </div>
+                <div class="visual-item">
+                    <!-- Replace with: <img src="ad-distribution.png" alt="Distribution of AD Compensation"> -->
+                    <div class="visual-placeholder">ad-distribution.png</div>
+                    <p class="visual-caption">Initial distribution showed multimodality and right skew—common when mixing programs of vastly different scales.</p>
+                </div>
+                <div class="visual-item">
+                    <!-- Replace with: <img src="ad-distribution-faceted.png" alt="Distribution faceted by division"> -->
+                    <div class="visual-placeholder">ad-distribution-faceted.png</div>
+                    <p class="visual-caption">Faceting by division (FBS, FCS, No Football) resolved some issues, but FBS still showed multimodality due to Power 5 vs. Group of 5 differences.</p>
+                </div>
+            </div>
+        </div>
+
+        <h2>Methodology</h2>
+        <p>The model predicts administrative compensation as a function of department revenues, Directors' Cup points, football and basketball recruiting scores, year, and a categorical variable for division/conference tier (Power 5, Group of 5, FCS, No Football). I also built a lagged version to examine how prior-year performance influences following-year compensation decisions.</p>
+        <p>Diagnostic testing revealed heteroscedasticity and autocorrelation in residuals. To address this, I applied Heteroscedasticity and Autocorrelation Consistent (HAC) standard errors, which increased standard errors but provided valid inference.</p>
+
+        <div class="results-box">
+            <h3>Model Performance</h3>
+            <div class="result-stat">
+                <span>Observations</span>
+                <span>1,428</span>
+            </div>
+            <div class="result-stat">
+                <span>Adjusted R²</span>
+                <span>0.816</span>
+            </div>
+            <div class="result-stat">
+                <span>Significant Predictors</span>
+                <span>Revenues, Directors' Cup, Basketball Recruiting, Year</span>
+            </div>
+        </div>
+
+        <h2>Key Findings</h2>
+        <p><strong>Power 5 membership dominates.</strong> Conference affiliation had the largest effect on compensation, reflecting the financial advantages of enhanced branding, TV deals, and larger budgets at elite programs.</p>
+        <p><strong>Revenues matter.</strong> Department revenues consistently emerged as a significant predictor across all model specifications.</p>
+        <p><strong>Upward trend over time.</strong> The year variable was persistently significant, reflecting the broader increase in spending on college athletics administration.</p>
+        <p><strong>Football recruiting effects are complex.</strong> Interestingly, football recruiting showed a negative association in the base model but positive (non-significant) in the lagged model—possibly because strong recruiting classes often follow weaker seasons.</p>
+
+        <div class="challenges-box">
+            <h3>Challenges & Limitations</h3>
+            <p>This project was a lesson in working with imperfect data. The reliance on imputed compensation values, while necessary, introduces uncertainty. A more complete dataset with actual base salaries, bonuses, and contract details would strengthen the analysis. Multicollinearity between revenues and conference affiliation also complicates interpretation. Still, the experience of assembling data from multiple sources, diagnosing model issues, and adjusting methodology accordingly was valuable—even if the final product wasn't as clean as I'd hoped.</p>
+        </div>
+
+        <h2>Learning Outcomes Demonstrated</h2>
+        <div class="outcomes-grid">
+            <div class="outcome-item">
+                <h4>1. Data Collection & Storage</h4>
+                <p>Assembled data from IRS 990 filings, NCAA reports, 247sports, and NACDA across multiple years</p>
+            </div>
+            <div class="outcome-item">
+                <h4>3. Visualization & Modeling</h4>
+                <p>Built regression models with HAC adjustments and diagnostic testing</p>
+            </div>
+            <div class="outcome-item">
+                <h4>4. Programming</h4>
+                <p>Used R for data manipulation, imputation, and statistical modeling</p>
+            </div>
+            <div class="outcome-item">
+                <h4>6. Ethics</h4>
+                <p>Engaged with transparency questions around executive compensation in college athletics</p>
+            </div>
+        </div>
+
+        <a href="ad-compensation-thesis.pdf" class="btn" target="_blank">Read Full Thesis (PDF)</a>
+    </div>
+
+    <footer>
+        <p>© 2025 Walker Oettl | Syracuse University M.S. Applied Data Science</p>
+    </footer>
+</body>
+</html>
