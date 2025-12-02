@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blog | Walker Oettl</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            line-height: 1.8;
+            color: #1a1a2e;
+            background: #fafafa;
+        }
+        
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(255,255,255,0.95);
+            backdrop-filter: blur(10px);
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 1000;
+            border-bottom: 1px solid #eee;
+        }
+        
+        .logo {
+            font-weight: 700;
+            font-size: 1.25rem;
+            color: #1a1a2e;
+            text-decoration: none;
+        }
+        
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+        
+        .nav-links a {
+            text-decoration: none;
+            color: #555;
+            font-weight: 500;
+            font-size: 0.9rem;
+            transition: color 0.2s;
+        }
+        
+        .nav-links a:hover {
+            color: #4361ee;
+        }
+        
+        .blog-hero {
+            padding: 8rem 2rem 4rem;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            text-align: center;
+        }
+        
+        .blog-hero h1 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+        }
+        
+        .blog-hero .subtitle {
+            font-size: 1.1rem;
+            opacity: 0.9;
+        }
+        
+        .blog-content {
+            max-width: 750px;
+            margin: 0 auto;
+            padding: 4rem 2rem;
+        }
+        
+        .blog-content h2 {
+            font-size: 1.75rem;
+            margin-top: 3rem;
+            margin-bottom: 1rem;
+            color: #1a1a2e;
+        }
+        
+        .blog-content h3 {
+            font-size: 1.25rem;
+            margin-top: 2rem;
+            margin-bottom: 0.75rem;
+            color: #333;
+        }
+        
+        .blog-content p {
+            color: #444;
+            margin-bottom: 1.25rem;
+        }
+        
+        .blog-content strong {
+            color: #1a1a2e;
+        }
+        
+        .intro-paragraph {
+            font-size: 1.15rem;
+            color: #333;
+            border-left: 4px solid #667eea;
+            padding-left: 1.5rem;
+            margin-bottom: 2rem;
+        }
+        
+        footer {
+            background: #1a1a2e;
+            color: white;
+            padding: 3rem 2rem;
+            text-align: center;
+        }
+        
+        footer p {
+            opacity: 0.7;
+            font-size: 0.9rem;
+        }
+        
+        @media (max-width: 768px) {
+            .blog-hero h1 { font-size: 2rem; }
+            .nav-links { display: none; }
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <a href="index.html" class="logo">Walker Oettl</a>
+        <ul class="nav-links">
+            <li><a href="index.html#overview">Overview</a></li>
+            <li><a href="index.html#projects">Projects</a></li>
+            <li><a href="index.html#video">Video</a></li>
+            <li><a href="blog.html">Blog</a></li>
+        </ul>
+    </nav>
+
+    <section class="blog-hero">
+        <h1>My Journey Through Applied Data Science</h1>
+        <p class="subtitle">Reflections on the M.S. in Applied Data Science at Syracuse University</p>
+    </section>
+
+    <article class="blog-content">
+        <p class="intro-paragraph">When I started the M.S. in Applied Data Science program at Syracuse University, I had a clear goal in mind: sharpen my technical abilities. I came in with a B.S. in Sport Analytics and a concentration in Visual Analytics, so I wasn't starting from zero. But I knew there were gaps. I wanted to drill down on the key facets of data science, to move from someone who could work with data to someone who could truly think like a data scientist. What I found over the course of the program was something more expansive than I expected.</p>
+
+        <h2>What I Expected vs. What I Found</h2>
+        <p>Going in, I anticipated a curriculum heavy on technical training. More Python. More R. More machine learning algorithms and statistical methods. And yes, I got all of that. But the surprise was how much emphasis the program placed on something less tangible but equally important: a structured framework for thinking about data science work.</p>
+        <p>The program is organized around six learning outcomes, and at first, I thought of them as administrative checkboxes. By the end, I came to appreciate them as a genuine mental model for approaching problems. They forced me to think beyond the code. It wasn't enough to build a model; I had to consider how the data was collected, whether the insights were actionable, how I would communicate the findings, and what ethical considerations were at play. This shift in perspective, from pure technical execution to holistic problem-solving, was the most valuable thing I took from the program.</p>
+        <p>I also learned much more than I anticipated about project management. How do you scope a data science project? How do you work with stakeholders who don't speak your technical language? How do you manage a team where everyone has different strengths? These aren't skills you can learn from a textbook, and the program's emphasis on group projects and end-of-semester presentations gave me plenty of practice.</p>
+
+        <h2>The Six Learning Outcomes</h2>
+        <p>Let me walk through each of the program's learning outcomes and how I achieved them.</p>
+
+        <h3>1. Data Collection and Storage</h3>
+        <p>This outcome is about identifying and leveraging applicable technologies to collect, store, and access data. It sounds straightforward, but it touches every project you'll ever do. If you can't get the data, you can't do the analysis.</p>
+        <p>I worked on data collection in nearly every class. Sometimes it meant pulling from APIs. Sometimes it meant cleaning messy CSV files exported from legacy systems. Sometimes it meant scraping websites or working with databases. For my undergraduate thesis on Athletic Director compensation, I had to piece together data from IRS Form 990 filings, NCAA Membership Financial Reports, 247sports recruiting rankings, and NACDA Directors' Cup results. None of these sources talked to each other. Getting them into a unified dataset was half the battle.</p>
+        <p>If I have one critique, it's that the program could have gone deeper on web scraping. It came up occasionally, but given how much real-world data lives on websites without convenient APIs, more dedicated coursework on scraping techniques and the ethical considerations around them would have been valuable.</p>
+
+        <h3>2. Actionable Insight</h3>
+        <p>Creating actionable insight across a range of contexts is the whole point of data science. It's not enough to find an interesting pattern in the data. You have to translate that pattern into something a decision-maker can act on.</p>
+        <p>This outcome was emphasized heavily in end-of-semester group projects. Nearly every class culminated in a presentation where we had to stand in front of stakeholders (real or simulated) and explain not just what we found, but what they should do about it. The NFL's Dwindling Middle Class project was the clearest example. We didn't just identify that middle-class player compensation was shrinking; we proposed specific policy mechanisms, the Mid-Level Exception and the Team-Level Exception, that the NFLPA could advocate for in collective bargaining. When we presented to union executives, including the president, the conversation wasn't about our methodology. It was about whether our proposals were politically feasible and how they might be implemented.</p>
+        <p>That experience taught me that actionable insight requires understanding your audience. The best analysis in the world is useless if you can't communicate it in terms your stakeholders care about.</p>
+
+        <h3>3. Visualization and Predictive Modeling</h3>
+        <p>This outcome plays to my strengths. My concentration in Visual Analytics meant I took dedicated courses on data visualization, and I've always enjoyed the challenge of making complex information visually intuitive.</p>
+        <p>But the outcome isn't just about making pretty charts. It's about applying visualization and predictive models to generate insight. The modeling side pushed me further than I expected. In the Deep Learning course, I built a U-Net convolutional neural network from scratch to perform frame interpolation on animated footage. That project required understanding not just how neural networks work in theory, but how to architect them, train them, and diagnose problems when they don't perform as expected.</p>
+        <p>The visualization work taught me restraint. Early in the program, I had a tendency to over-design, to add complexity because I could. Over time, I learned that the best visualizations are often the simplest ones. A clear bar chart that answers the right question beats a fancy interactive dashboard that obscures it.</p>
+
+        <h3>4. Programming Proficiency</h3>
+        <p>This was my initial goal, and I'm satisfied with where I landed. My Python and R skills have been honed to a professional level through coursework and projects. I can work fluently in both languages, and I understand when to reach for one versus the other.</p>
+        <p>Python has become my default for anything involving machine learning or deep learning. The ecosystem is simply better. TensorFlow, PyTorch, scikit-learn: these tools are Python-first, and trying to replicate their functionality in R would be fighting upstream. For statistical analysis and quick exploratory work, R still has its place. The tidyverse makes data manipulation genuinely pleasant, and ggplot2 produces publication-quality visualizations with minimal effort.</p>
+        <p>One skill I developed that isn't on any syllabus is the ability to use AI tools effectively without plagiarizing. Large language models can accelerate your workflow dramatically if you know how to use them as collaborators rather than crutches. The key is understanding what they're good at (boilerplate code, syntax help, explaining concepts) and what they're bad at (domain-specific judgment, novel problem-solving, knowing when their output is wrong). I used AI assistance throughout my coursework, and it made me more productive. But I also learned to verify everything and to ensure I understood the code I was submitting. There's a difference between using a tool and letting a tool use you.</p>
+
+        <h3>5. Communication</h3>
+        <p>Communicating insights to a broad range of audiences, from project sponsors to technical team leads, is a skill that requires practice. You can't learn it by reading about it.</p>
+        <p>The program provided plenty of opportunities to practice. Large group projects forced us to coordinate across team members with different communication styles. Presentations required us to explain technical work to audiences with varying levels of sophistication. Poster sessions demanded that we distill complex projects into visual summaries that could be understood in a few minutes.</p>
+        <p>The NFLPA project was my biggest communication challenge. Presenting to union executives meant stripping away the technical details and focusing on the business implications. They didn't care about our elbow plot or how we chose the number of clusters. They cared about whether our proposals would help their members and whether they were realistic to implement. Learning to read the room and adjust your message on the fly is something you can only develop through experience.</p>
+
+        <h3>6. Ethics in Data Science</h3>
+        <p>Applying ethics in the development, use, and evaluation of data and predictive models touches on fairness, bias, transparency, and privacy. It's easy to treat ethics as an afterthought, something you add a paragraph about at the end of a paper. The program pushed back against that tendency.</p>
+        <p>Ethics came up in nearly every class, sometimes explicitly and sometimes embedded in project requirements. The portfolio course at the end of the curriculum brought it all together, forcing us to reflect on how ethical considerations had shaped our work throughout the program.</p>
+        <p>The NFL project had clear ethical dimensions. We were proposing policies that would redistribute money from the highest-paid players to the middle class. That raises fairness questions that don't have obvious answers. Is it ethical to cap how much a star player can earn so that journeyman veterans can earn more? Who gets to make that decision? Our job wasn't to resolve those questions, but we had to engage with them honestly in our presentation.</p>
+        <p>The Athletic Director compensation project raised different ethical issues around transparency. Why is it so hard to find out what public university employees are paid? The difficulty of collecting that data isn't an accident; it reflects institutional choices about what information should be public. Working on that project made me more attuned to the politics of data availability.</p>
+
+        <h2>Three Projects That Shaped My Education</h2>
+
+        <h3>The NFL's Dwindling Middle Class</h3>
+        <p>This project, completed for the NFLPA Analytics Competition, was the most impactful of my graduate career. Working with three teammates, we analyzed 14 years of NFL salary data to investigate compensation inequality among veteran players.</p>
+        <p>The technical work involved K-means clustering to identify economic classes (lower, middle, and upper) and tracking how those classes evolved over time. We found that the middle class was shrinking, squeezed by rising star salaries that consumed an ever-larger share of the salary cap. The range of middle-class compensation contracted from $5.3 million to $4.8 million over our study period, and their share of guaranteed money dropped significantly after the 2020 collective bargaining agreement.</p>
+        <p>My contribution focused on policy modeling. I designed the Mid-Level Exception and Team-Level Exception proposals, including the funding mechanism based on a progressive tax on the Performance-Based Pay pool. I also led our final presentation to NFLPA executives.</p>
+        <p>What made this project special wasn't the technical complexity. It was the stakes. We were presenting real policy proposals to real decision-makers who could actually implement them. That changed how I thought about the work. Every choice we made, from how we defined the classes to how we framed the recommendations, had to be defensible not just methodologically but practically.</p>
+
+        <h3>Anime Frame Interpolation with U-Net</h3>
+        <p>This project, completed for IST 691: Deep Learning in Practice, was the most technically challenging work I did in the program. The goal was to build a neural network that could generate intermediate animation frames, potentially assisting animators by filling in gaps between keyframes.</p>
+        <p>I built a U-Net architecture from scratch with roughly 31 million parameters. The training pipeline extracted triplets from video using a 9-frame window: given frames 1 and 9, the model learned to predict frame 5. The window slid with a stride of 5 frames to maximize training data. At inference time, the model worked recursively, generating frame 5 from 1 and 9, then frame 3 from 1 and 5, then frame 7 from 5 and 9, and so on. This approach generated 7 intermediate frames from just 2 drawn keyframes.</p>
+        <p>The results were imperfect. Hardware constraints limited training time and data volume, and the generated frames showed some blurring. But the core approach worked. With more compute and more training data, this kind of system could genuinely assist animation production.</p>
+        <p>This project taught me humility about deep learning. It's easy to read papers and think you understand how these systems work. Actually building one from scratch, diagnosing why it's not converging, and tuning hyperparameters until it does is a different experience entirely.</p>
+
+        <h3>Athletic Director Compensation Modeling</h3>
+        <p>This was my undergraduate capstone thesis, and it taught me as much about data limitations as it did about modeling. The goal was to identify the determinants of NCAA Athletic Director compensation, building on prior research that used data from 2010-2011.</p>
+        <p>The core challenge was data availability. Unlike coaches, whose salaries are widely reported, AD compensation is opaque. I had to assemble data from IRS Form 990 filings and build a predictive model to impute missing values using NCAA administrative compensation figures. The final dataset covered 1,400+ school-year observations across Division I programs.</p>
+        <p>The modeling itself was straightforward: linear regression with revenue, recruiting success, Directors' Cup performance, and conference affiliation as predictors. Diagnostic testing revealed heteroscedasticity and autocorrelation, which I addressed with HAC standard errors. The model achieved an adjusted R-squared of 0.816, with Power 5 conference membership emerging as the dominant predictor.</p>
+        <p>The project didn't produce groundbreaking findings. But it taught me how to work with imperfect data, how to make methodological choices under uncertainty, and how to be honest about limitations. Those are skills that matter more in the real world than any specific modeling technique.</p>
+
+        <h2>Learning Beyond the Classroom</h2>
+        <p>My internship with Predictive Analytics Group showed me what data science looks like in a real-world workflow. The company focuses on financial data analysis for credit and loan underwriting strategies, which is a different domain than sports analytics but draws on the same fundamental skills.</p>
+        <p>What struck me most was how different the priorities are in industry versus academia. In school, there's an emphasis on methodological rigor and technical sophistication. In industry, especially at the entry level, the emphasis is on actionable insight, clear visualization, and programming proficiency that produces reliable results quickly. Some areas, like loan underwriting and P&L analysis, need less technical complexity than you might expect. What they need is clear thinking and reliable execution.</p>
+        <p>The internship also taught me about workflow. How do you manage multiple projects with competing deadlines? How do you communicate progress to stakeholders who aren't checking in every day? How do you ask for help when you're stuck without wasting other people's time? These skills aren't taught explicitly, but they determine whether you succeed in a professional environment.</p>
+
+        <h2>My Favorite Class</h2>
+        <p>Deep Learning in Practice was my favorite class in the program. The challenge was part of it. Deep learning is technically demanding, and the coursework pushed me harder than any other class. But beyond the difficulty, I appreciated that we were working on the cutting edge of machine learning technology.</p>
+        <p>The field is moving fast. Techniques that were state-of-the-art five years ago are now considered basic. Keeping up requires not just learning existing methods but understanding the principles well enough to adapt when new approaches emerge. The class gave me that foundation.</p>
+        <p>The frame interpolation project came out of this class, and it remains the work I'm most proud of technically. Building a neural network from scratch, training it on custom data, and getting it to produce meaningful output was deeply satisfying in a way that running pre-built models never is.</p>
+
+        <h2>Reflections on the Program</h2>
+        <p>The best part of the program was the faculty. The professors were helpful yet challenging, which is exactly the balance you want. They pushed us to do better work while providing the support needed to actually get there. Office hours were genuinely useful. Feedback on projects was substantive. When I was stuck on my thesis, my advisor didn't just tell me what to do; he helped me think through the options and make my own decision.</p>
+        <p>If I had to identify a surprise, it would be how much the program changed how I think about problems, not just how I solve them. I came in focused on technical skills, and I got those. But I also developed a mental framework for approaching data science work that will serve me longer than any specific programming technique.</p>
+        <p>The six learning outcomes, which I initially dismissed as bureaucratic requirements, turned out to be genuinely useful. They forced me to think about data science holistically. A project isn't complete when the model runs. It's complete when you've collected the right data, generated actionable insight, built appropriate visualizations, written clean code, communicated your findings effectively, and considered the ethical implications. That's a higher bar, and meeting it consistently is what separates good data scientists from great ones.</p>
+
+        <h2>Looking Forward</h2>
+        <p>I'm graduating with skills I didn't have two years ago and perspectives I didn't expect to develop. The technical abilities are there: Python, R, machine learning, deep learning, statistical modeling, data visualization. But more importantly, I know how to approach problems. I know how to scope a project, work with stakeholders, manage a team, and communicate findings. I know how to think about ethics not as an afterthought but as a core consideration.</p>
+        <p>The M.S. in Applied Data Science prepared me for the kind of work I want to do. Whether that's sports analytics, financial modeling, or something else entirely, the foundation is solid. The rest is just application.</p>
+    </article>
+
+    <footer>
+        <p>© 2025 Walker Oettl | Syracuse University M.S. Applied Data Science</p>
+    </footer>
+</body>
+</html>
